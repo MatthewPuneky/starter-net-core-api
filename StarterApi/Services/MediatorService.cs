@@ -1,15 +1,14 @@
 ﻿using FluentValidation;
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
 using StarterApi.Common.Responses;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace StarterApi.Services
 {
     public interface IMediatorService
     {
-        Task<Response<object>> Send<TResponse>(IRequest<TResponse> request);
+        Task<Response<TResponse>> Send<TResponse>(IRequest<TResponse> request)
+            where TResponse : class, new();
     }
 
     public class MediatorService : IMediatorService
@@ -21,9 +20,10 @@ namespace StarterApi.Services
             _mediator = mediator;
         }
 
-        public async Task<Response<object>> Send<TResponse>(IRequest<TResponse> request)
+        public async Task<Response<TResponse>> Send<TResponse>(IRequest<TResponse> request)
+            where TResponse : class, new()
         {
-            var response = new Response<object>();
+            var response = new Response<TResponse>();
 
             try
             {
@@ -38,9 +38,10 @@ namespace StarterApi.Services
             return response;
         }
 
-        private Response<object> ConvertValidationErrorsToErrorMessages<TResponse>(ValidationException result)
+        private Response<TResponse> ConvertValidationErrorsToErrorMessages<TResponse>(ValidationException result)
+            where TResponse : class, new()
         {
-            var response = new Response<object> { Data = new object() };
+            var response = new Response<TResponse> { Data = new TResponse() };
 
             foreach (var error in result.Errors)
             {
