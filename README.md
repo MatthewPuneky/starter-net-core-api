@@ -1,5 +1,5 @@
 # starter-net-core-api
-Guide to Renaming Your Visual Studio Solution and/or Projects
+**Guide to Renaming Your Visual Studio Solution and/or Projects**
 
 1. Decide ahead of time what your new solution name is and if you want to change any project titles inside of the solution as well
 2. Close the Visual Studio window that contains the solution that you want to rename
@@ -8,7 +8,7 @@ Guide to Renaming Your Visual Studio Solution and/or Projects
 4. Rename the .sln file using either Windows Explorer or VS Code
 
 
-To Rename Projects
+**To Rename Projects**
 
 1. Make sure above steps 1-3 have been completed
 2. Open the folder containing your solution in a text editor, I suggest VS Code
